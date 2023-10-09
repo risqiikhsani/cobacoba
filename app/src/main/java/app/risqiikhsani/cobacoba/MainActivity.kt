@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 data class Item(
         val image: Int,
         val title: String,
@@ -74,6 +75,7 @@ fun MyApp() {
                 .height(200.dp)
                 .clip(RoundedCornerShape(16.dp))
         ) {
+            //            items[currentIndex].image akan mengambil variable image
             Image(
                 painter = painterResource(id = items[currentIndex].image),
                 contentDescription = null,
@@ -89,24 +91,28 @@ fun MyApp() {
 
 
         Column(
+            //clip berada di paling atas agar corner rounded
             modifier = Modifier
                 .clip(RoundedCornerShape(20.dp))
                 .background(color = Color.Magenta)
                 .padding(20.dp)
         ) {
+            //items[currentIndex].title akan mengambil variable title
             Text(
                 text = items[currentIndex].title,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(8.dp))
+            // items[currentIndex].text akan mengambil variable text
             Text(
                 text = items[currentIndex].text,
                 fontSize = 16.sp,
             )
         }
 
-        Spacer(modifier = Modifier.weight(1f)) // Push buttons to the bottom
+//        agar buttons berada di paling bawah
+        Spacer(modifier = Modifier.weight(1f))
 
         Row(
             modifier = Modifier
@@ -135,6 +141,7 @@ fun MyApp() {
     }
 }
 
+//membuat list 10 kucing yang berisi image,title,text
 @Composable
 fun generateItems(): List<Item> {
     val item1 = Item(image = R.drawable.cat1, title = "Bob", text = "Kucing imut")
